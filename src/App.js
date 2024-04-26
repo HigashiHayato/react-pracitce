@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
+import {useState} from "react"
 
 function App() {
+  const dog = "U・x・U"
+  // alert(dog)
+  // const x = 3
+  // const y = 4
+  // const sum = x + y
+  // console.log(sum)
+
+  const [counter, setCounter] = useState(10)
+
+  function increment() {
+    // setCounter(counter + 1)
+    counter < 10 ? setCounter(counter + 1) : setCounter(10)
+  }
+  function decrement() {
+    // if (counter > 0)
+    //   setCounter(counter - 1)
+    counter > 0 ? setCounter(counter - 1) : setCounter(0)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className = "App">
+      <p>{counter}</p>
+      <button onClick={increment}>INCREMENT</button><br/>
+      <button onClick={decrement}>DECREMENT</button>
+      {dog}<br/>{dog}<br/>{dog}
+
     </div>
   );
 }
