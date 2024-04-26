@@ -25,7 +25,7 @@ function App() {
   return (
     <div className = "App">
       <p>{counter}</p>
-      <button onClick={increment}>INCREMENT</button><br/>
+      <button onClick={increment}>INCREMENT</button><br />
       <button onClick={decrement}>DECREMENT</button>
       {dog}<br/>{dog}<br/>{dog}
 
