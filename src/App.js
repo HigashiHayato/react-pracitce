@@ -1,18 +1,29 @@
-// import logo from './logo.svg';
-// import './App.css';
-import { useState } from "react"
-// import Article from "./components/Article"
-import { Article } from "./components/index"
+import { useEffect, useState } from "react";
+import { Article, TextInput, Counter, ToggleButton } from "./components/index"
 
 function App() {
-  const [counter, setCounter] = useState(10)
 
-  function increment() {
-    counter < 10 ? setCounter(counter + 1) : setCounter(10)
+  const [name, setName] = useState('')
+  const [id, setId] = useState('HigashiHayato')
+  const ids = ['HigashiHayato', 'aws', 'google', 'facebook']
+  const getRamdomId = () => {
+    const _id = ids[Math.floor(Math.random() * ids.length)]
+    setId(_id)
   }
-  function decrement() {
-    counter > 0 ? setCounter(counter - 1) : setCounter(0)
-  }
+
+
+  useEffect(() => {
+    fetch(`https://api.github.com/users/${id}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      setName(data.name)
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  }, [id])
+
 
   return (
     <div>
@@ -20,11 +31,13 @@ function App() {
         title={'React練習'}
         contents={'東勇斗'}
       />
-      <div className = "App">
-        <p>{counter}</p>
-        <button onClick={increment}>INCREMENT</button><br />
-        <button onClick={decrement}>DECREMENT</button>
-    </div>
+      <TextInput />
+      <Counter />
+      <ToggleButton />
+      <div>
+        <p>{id}のGithub上の名前は{name}です。</p>
+        <button onClick={getRamdomId}>IDを変更</button>
+      </div>
   </div>
   );
 }
