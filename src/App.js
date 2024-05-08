@@ -1,7 +1,8 @@
 // import logo from './logo.svg';
 // import './App.css';
 import { useState } from "react"
-import Article from "./components/Article"
+// import Article from "./components/Article"
+import { Article } from "./components/index"
 
 function App() {
   const [counter, setCounter] = useState(10)
@@ -17,7 +18,7 @@ function App() {
     <div>
       <Article
         title={'React練習'}
-        content={'東勇斗'}
+        contents={'東勇斗'}
       />
       <div className = "App">
         <p>{counter}</p>
