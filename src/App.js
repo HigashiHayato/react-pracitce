@@ -1,45 +1,27 @@
-import { useEffect, useState } from "react";
-import { Article, TextInput, Counter, ToggleButton } from "./components/index"
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import React, { Component } from "react";
+import Home from "./screen/Home";
 
 function App() {
 
-  const [name, setName] = useState('')
-  const [id, setId] = useState('HigashiHayato')
-  const ids = ['HigashiHayato', 'aws', 'google', 'facebook']
-  const getRamdomId = () => {
-    const _id = ids[Math.floor(Math.random() * ids.length)]
-    setId(_id)
-  }
+  return (
+    <BrowserRouter>
+      <div>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  )
+}
 
-
-  useEffect(() => {
-    fetch(`https://api.github.com/users/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      setName(data.name)
-    })
-    .catch(error => {
-      console.error(error)
-    })
-  }, [id])
-
-
+const About = () => {
   return (
     <div>
-      <Article
-        title={'React練習'}
-        contents={'東勇斗'}
-      />
-      <TextInput />
-      <Counter />
-      <ToggleButton />
-      <div>
-        <p>{id}のGithub上の名前は{name}です。</p>
-        <button onClick={getRamdomId}>IDを変更</button>
-      </div>
-  </div>
-  );
-}
+      <h1>About</h1>
+    </div>
+  )
+};
 
 export default App;
